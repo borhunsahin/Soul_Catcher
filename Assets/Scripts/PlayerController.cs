@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    GameManager gameManager;
+    Animator playerAnimator;
+
+    public float playerSpeed = 2;
+
+    void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerAnimator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        Controller();
+    }
+    private void Controller()
+    {
+        if (!gameManager.isFight)
+        {
+            transform.Translate(transform.forward * Time.deltaTime * playerSpeed);
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                if (Input.GetAxis("Mouse X") < 0)
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
+
+                if (Input.GetAxis("Mouse X") > 0)
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
+            }
+        }
+            
+        playerAnimator.SetBool("isFight", gameManager.isFight);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Buff") || other.CompareTag("DeBuff"))
+        {
+            string[] buff = (other.gameObject.GetComponentInChildren<TextMeshPro>().text).Split();
+            gameManager.AgentProcess(buff[0], int.Parse(buff[1]));
+        }
+        if (other.CompareTag("FreeAgent"))
+        {
+            gameManager.Particle(gameManager.freeAgentParticleList,gameManager.player.transform.position);
+            gameManager.IncreaseAgent();
+            other.gameObject.SetActive(false);
+        }
+        if (other.CompareTag("FightPlatform"))
+        {
+            gameManager.Fight(true);
+        }
+
+    }
+    public Vector3 GetPosition() => transform.position;
+}
