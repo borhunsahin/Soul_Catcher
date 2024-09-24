@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     GameManager gameManager;
-    Animator playerAnimator;
+    [HideInInspector] public Animator playerAnimator;
 
-    public float playerSpeed = 2;
+    [SerializeField] private float playerSpeed;
 
     void Start()
     {
@@ -53,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("FightPlatform"))
         {
-            gameManager.Fight(true);
+            gameManager.isFight= true;
         }
 
     }

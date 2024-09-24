@@ -8,8 +8,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject[] ButtonList;
     void Start()
     {
-        PlayerDataManager.SetLastLevel(4);
-        PlayerPrefs.Save();
 
         for (int i = 0; i < PlayerDataManager.GetLastLevel(); i++)
         {

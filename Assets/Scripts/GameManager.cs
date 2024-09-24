@@ -3,7 +3,6 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public GameObject player;
@@ -21,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private FightPlatform fightPlatform;
 
-    public bool isFight = false; 
+    public bool isFight = false;
     public bool GameOver = false;
 
     public int agentCount = 0;
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1; // Tab to continue butonu ile bir fonksiyon yap
         enemyAgentCount = fightPlatform.enemyAgentCount;
 
         slider.maxValue = fightPlatform.transform.position.z;
@@ -42,15 +42,9 @@ public class GameManager : MonoBehaviour
         {
             IncreaseAgent();
         }
-        if (isFight)
-        {
-            if(agentCount == 0)
-                GameOver = true;
-            else if(enemyAgentCount == 0)
-                isFight = false;
-        }
+        
 
-        slider.value = player.transform.position.z;
+        slider.value = player.transform.position.z; // Mesafe Slider ı gamemanager den buraya taşı
     }
     public void IncreaseAgent()
     {
@@ -161,13 +155,14 @@ public class GameManager : MonoBehaviour
             } 
         }
     }
-    public void Fight(bool status)
+    public void Fight() // Next Station
     {
-        isFight = status;
-
-    }
-    public void EndFight(bool status)
-    {
-        isFight = status;
+        if (isFight)
+        {
+            if (agentCount == 0)
+                GameOver = true;
+            else if (enemyAgentCount == 0)
+                isFight = true;
+        }
     }
 }

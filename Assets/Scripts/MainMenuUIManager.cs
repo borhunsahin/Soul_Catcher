@@ -6,46 +6,46 @@ using UnityEngine.UI;
 
 public class MainMenuUIManager : MonoBehaviour
 {
-    public Panels panel;
+    public MainMenuPanels mainMenuPanels;
     private List<GameObject> panelList;
 
     private AudioSource audioSource;
-    public Sounds sounds;
+    public MainMenuSounds mainMenuSounds;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
 
         panelList = new List<GameObject>
         {
-            panel.MainMenuPanel,
-            panel.SettingsPanel,
-            panel.NoAdsPanel,
-            panel.ExitQuaryPanel,
-            panel.PlayPanel,
-            panel.LevelSelectPanel,
-            panel.LevelSelectBackPanel
+            mainMenuPanels.MainMenuPanel,
+            mainMenuPanels.SettingsPanel,
+            mainMenuPanels.NoAdsPanel,
+            mainMenuPanels.ExitQuaryPanel,
+            mainMenuPanels.PlayPanel,
+            mainMenuPanels.LevelSelectPanel,
+            mainMenuPanels.LevelSelectBackPanel
         };
 
         PlayerDataManager.CheckKey();
 
-        sounds.VolumeSlider.value = PlayerDataManager.GetVolume();
-        sounds.SoundToggle.isOn = PlayerDataManager.GetSound();
-        sounds.MusicToggle.isOn = PlayerDataManager.GetMusic();
+        mainMenuSounds.VolumeSlider.value = PlayerDataManager.GetVolume();
+        mainMenuSounds.SoundToggle.isOn = PlayerDataManager.GetSound();
+        mainMenuSounds.MusicToggle.isOn = PlayerDataManager.GetMusic();
     }
 
     private void PanelSelecter(GameObject panelName) 
     {
         
-        foreach (GameObject p in panelList)
+        foreach (GameObject panel in panelList)
         {
-            if(p.name == panelName.name)
+            if(panel.name == panelName.name)
             {
-                p.SetActive(true);
+                panel.SetActive(true);
             }
             else
             {
-                if(p.name != panel.MainMenuPanel.name)
-                    p.SetActive(false);
+                if(panel.name != mainMenuPanels.MainMenuPanel.name)
+                    panel.SetActive(false);
             }
         }
     }
@@ -56,74 +56,74 @@ public class MainMenuUIManager : MonoBehaviour
     }
     public void PlayButton()
     {
-        PanelSelecter(panel.PlayPanel);
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        PanelSelecter(mainMenuPanels.PlayPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void SandBoxButton()
     {
 
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void LevelSelecterButton()
     {
-        PanelSelecter(panel.LevelSelectPanel);
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        PanelSelecter(mainMenuPanels.LevelSelectPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void SettingsButton()
     {
-        PanelSelecter(panel.SettingsPanel);
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        PanelSelecter(mainMenuPanels.SettingsPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void NoADSButton()
     {
-        PanelSelecter(panel.NoAdsPanel);
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        PanelSelecter(mainMenuPanels.NoAdsPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void ExitButton()
     {
-        PanelSelecter(panel.ExitQuaryPanel);
-        audioSource.PlayOneShot(sounds.ExitButtonSound);
-    }
-    public void BackButton()
-    {
-        PanelSelecter(panel.MainMenuPanel);
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        PanelSelecter(mainMenuPanels.ExitQuaryPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ExitButtonSound);
     }
     public void StayButton()
     {
-        PanelSelecter(panel.MainMenuPanel);
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        PanelSelecter(mainMenuPanels.MainMenuPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void LeaveButton()
     {
-        Application.Quit();
-        audioSource.PlayOneShot(sounds.ExitButtonSound);
+        audioSource.PlayOneShot(mainMenuSounds.ExitButtonSound);
+        Application.Quit();     
+    }
+    public void BackButton()
+    {
+        PanelSelecter(mainMenuPanels.MainMenuPanel);
+        audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
     }
     public void VolumeSlider()
     {
-        audioSource.volume = sounds.VolumeSlider.value;
-        sounds.menuMusic.volume = sounds.VolumeSlider.value;
-        PlayerDataManager.SetVolume(sounds.VolumeSlider.value);
+        audioSource.volume = mainMenuSounds.VolumeSlider.value;
+        mainMenuSounds.menuMusic.volume = mainMenuSounds.VolumeSlider.value;
+        PlayerDataManager.SetVolume(mainMenuSounds.VolumeSlider.value);
     }
     public void SoundToggle()
     {
-        audioSource.mute = sounds.SoundToggle.isOn;
-        sounds.menuMusic.mute = sounds.SoundToggle.isOn;
-        sounds.MusicToggle.isOn = sounds.SoundToggle.isOn;
-        PlayerDataManager.SetSound(sounds.SoundToggle.isOn);
-        PlayerDataManager.SetMusic(sounds.MusicToggle.isOn);
+        audioSource.mute = mainMenuSounds.SoundToggle.isOn;
+        mainMenuSounds.menuMusic.mute = mainMenuSounds.SoundToggle.isOn;
+        mainMenuSounds.MusicToggle.isOn = mainMenuSounds.SoundToggle.isOn;
+        PlayerDataManager.SetSound(mainMenuSounds.SoundToggle.isOn);
+        PlayerDataManager.SetMusic(mainMenuSounds.MusicToggle.isOn);
     }
     public void MusicToggle()
     {
         if(!audioSource.mute)
         {
-            sounds.menuMusic.mute = sounds.MusicToggle.isOn;
-            PlayerDataManager.SetMusic(sounds.MusicToggle.isOn);
+            mainMenuSounds.menuMusic.mute = mainMenuSounds.MusicToggle.isOn;
+            PlayerDataManager.SetMusic(mainMenuSounds.MusicToggle.isOn);
         }
     }
 }
 [Serializable]
-public struct Panels
+public struct MainMenuPanels
 {
     public GameObject MainMenuPanel;
     public GameObject SettingsPanel;
@@ -135,7 +135,7 @@ public struct Panels
     public GameObject LevelSelectBackPanel;
 }
 [Serializable]
-public struct Sounds
+public struct MainMenuSounds
 {
     public Slider VolumeSlider;
     public Toggle SoundToggle;

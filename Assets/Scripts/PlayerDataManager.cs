@@ -8,6 +8,11 @@ public static class PlayerDataManager
         {
             PlayerPrefs.SetInt("LastLevel", 1);
             PlayerPrefs.SetInt("Point", 0);
+            PlayerPrefs.SetFloat("VolumeValue", 1.0f);
+            PlayerPrefs.SetInt("SoundToggle", 1);
+            PlayerPrefs.SetInt("MusicToggle", 1);
+
+            PlayerPrefs.Save();
         }
     }
     public static void SetLastLevel(int levelValue)
