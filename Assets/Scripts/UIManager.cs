@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class UIManager : MonoBehaviour
 {
     public Panels panel;
+    public Sounds sounds;
     private List<GameObject> panelList;
+
+    AudioSource audioSource;
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         panelList = new List<GameObject>
         {
             panel.MainMenuPanel,
@@ -19,6 +26,8 @@ public class UIManager : MonoBehaviour
             panel.LevelSelectPanel,
             panel.LevelSelectBackPanel
         };
+
+        PlayerDataManager.CheckKey();
     }
     private void LoadScence(int index)
     {
@@ -43,39 +52,53 @@ public class UIManager : MonoBehaviour
     }
     public void ContinueButton()
     {
-
+        SceneManager.LoadScene(PlayerDataManager.GetLastLevel());
+        
     }
     public void PlayButton()
     {
         PanelSelecter(panel.PlayPanel);
+        audioSource.PlayOneShot(sounds.ButtonSound);
+    }
+    public void SandBoxButton()
+    {
+
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     public void LevelSelecterButton()
     {
         PanelSelecter(panel.LevelSelectPanel);
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     public void SettingsButton()
     {
         PanelSelecter(panel.SettingsPanel);
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     public void NoADSButton()
     {
         PanelSelecter(panel.NoAdsPanel);
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     public void ExitButton()
     {
         PanelSelecter(panel.ExitQuaryPanel);
+        audioSource.PlayOneShot(sounds.ExitButtonSound);
     }
     public void BackButton()
     {
         PanelSelecter(panel.MainMenuPanel);
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     public void StayButton()
     {
         PanelSelecter(panel.MainMenuPanel);
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     public void LeaveButton()
     {
         Application.Quit();
+        audioSource.PlayOneShot(sounds.ButtonSound);
     }
     
 
@@ -92,3 +115,10 @@ public struct Panels
     public GameObject LevelSelectPanel;
     public GameObject LevelSelectBackPanel;
 }
+[Serializable]
+public struct Sounds
+{
+    public AudioClip ButtonSound;
+    public AudioClip ExitButtonSound;
+}
+
