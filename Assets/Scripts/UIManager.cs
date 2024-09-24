@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class UIManager : MonoBehaviour
 {
     public Panels panel;
-    public Sounds sounds;
     private List<GameObject> panelList;
 
-    AudioSource audioSource;
+    private AudioSource audioSource;
+    public Sounds sounds;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -28,10 +27,10 @@ public class UIManager : MonoBehaviour
         };
 
         PlayerDataManager.CheckKey();
-    }
-    private void LoadScence(int index)
-    {
-        SceneManager.LoadScene(index);
+
+        sounds.VolumeSlider.value = PlayerDataManager.GetVolume();
+        sounds.SoundToggle.isOn = PlayerDataManager.GetSound();
+        sounds.MusicToggle.isOn = PlayerDataManager.GetMusic();
     }
 
     private void PanelSelecter(GameObject panelName) 
@@ -98,10 +97,30 @@ public class UIManager : MonoBehaviour
     public void LeaveButton()
     {
         Application.Quit();
-        audioSource.PlayOneShot(sounds.ButtonSound);
+        audioSource.PlayOneShot(sounds.ExitButtonSound);
     }
-    
-
+    public void VolumeSlider()
+    {
+        audioSource.volume = sounds.VolumeSlider.value;
+        sounds.menuMusic.volume = sounds.VolumeSlider.value;
+        PlayerDataManager.SetVolume(sounds.VolumeSlider.value);
+    }
+    public void SoundToggle()
+    {
+        audioSource.mute = sounds.SoundToggle.isOn;
+        sounds.menuMusic.mute = sounds.SoundToggle.isOn;
+        sounds.MusicToggle.isOn = sounds.SoundToggle.isOn;
+        PlayerDataManager.SetSound(sounds.SoundToggle.isOn);
+        PlayerDataManager.SetMusic(sounds.MusicToggle.isOn);      
+    }
+    public void MusicToggle()
+    {
+        if(!audioSource.mute)
+        {
+            sounds.menuMusic.mute = sounds.MusicToggle.isOn;
+            PlayerDataManager.SetMusic(sounds.MusicToggle.isOn);
+        } 
+    }
 }
 [Serializable]
 public struct Panels
@@ -118,7 +137,14 @@ public struct Panels
 [Serializable]
 public struct Sounds
 {
+    public Slider VolumeSlider;
+    public Toggle SoundToggle;
+    public Toggle MusicToggle;
+
     public AudioClip ButtonSound;
     public AudioClip ExitButtonSound;
+
+    public AudioSource menuMusic;
 }
+
 
