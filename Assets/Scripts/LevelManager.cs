@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject[] ButtonList;
+
+    public GameObject LoadingPanel;
+    public Slider LoadingSlider;
     void Start()
     {
 
@@ -14,7 +17,6 @@ public class LevelManager : MonoBehaviour
             int buttonIndex = i + 1;
             ButtonList[i].GetComponent<Button>().interactable = true;
             ButtonList[i].GetComponent<Button>().onClick.AddListener(delegate { GetButtonIndex(buttonIndex); });
-
         }
 
     }

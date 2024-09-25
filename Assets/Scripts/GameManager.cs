@@ -1,10 +1,11 @@
-﻿using System;
-using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    GameUIManager gameUIManager;
+
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject spawnPoint;
     [SerializeField] public GameObject followPoint;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FightPlatform fightPlatform;
 
     public bool isFight = false;
-    public bool GameOver = false;
+    public bool isGameOver = false;
 
     public int agentCount = 0;
     public int enemyAgentCount = 0;
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gameUIManager = GameObject.Find("UIManager").GetComponent<GameUIManager>();
+
         Time.timeScale = 1; // Tab to continue butonu ile bir fonksiyon yap
         enemyAgentCount = fightPlatform.enemyAgentCount;
 
@@ -42,7 +45,8 @@ public class GameManager : MonoBehaviour
         {
             IncreaseAgent();
         }
-        
+
+        Fight();
 
         slider.value = player.transform.position.z; // Mesafe Slider ı gamemanager den buraya taşı
     }
@@ -155,14 +159,24 @@ public class GameManager : MonoBehaviour
             } 
         }
     }
-    public void Fight() // Next Station
+    public void Fight()
     {
         if (isFight)
         {
-            if (agentCount == 0)
-                GameOver = true;
-            else if (enemyAgentCount == 0)
-                isFight = true;
+            if (enemyAgentCount == 0)
+            {
+                gameUIManager.EndGameProcess(isGameOver);
+
+                if(SceneManager.GetActiveScene().buildIndex == PlayerDataManager.GetLastLevel())
+                    PlayerDataManager.SetLastLevel(PlayerDataManager.GetLastLevel() + 1);
+                
+            }   
+            else if (enemyAgentCount > 0 && agentCount == 0)
+            {
+                isGameOver = true;
+                gameUIManager.EndGameProcess(isGameOver);
+            }
+                
         }
     }
 }
