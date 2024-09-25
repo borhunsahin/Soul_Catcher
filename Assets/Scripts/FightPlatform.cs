@@ -10,10 +10,6 @@ public class FightPlatform : MonoBehaviour
     {
         SetEnemyAgentFighters();
     }
-    void Update()
-    {
-        
-    }
     private void SetEnemyAgentFighters()
     {
         for (int i = 0; i < enemyAgentCount; i++)

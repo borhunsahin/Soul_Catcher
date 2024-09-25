@@ -11,7 +11,6 @@ public static class PlayerDataManager
             PlayerPrefs.SetFloat("VolumeValue", 1.0f);
             PlayerPrefs.SetInt("SoundToggle", 1);
             PlayerPrefs.SetInt("MusicToggle", 1);
-
             PlayerPrefs.Save();
         }
     }

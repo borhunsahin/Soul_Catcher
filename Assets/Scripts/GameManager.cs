@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject fightPoint;
 
     [SerializeField] private GameObject[] agentList;
-    
 
     [SerializeField] private GameObject[] spawnParticleList;
     [SerializeField] public GameObject[] penaltyParticleList;

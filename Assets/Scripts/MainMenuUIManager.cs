@@ -54,8 +54,7 @@ public class MainMenuUIManager : MonoBehaviour
                 {
                     audioSource.PlayOneShot(mainMenuSounds.buttonSound);
                     panel.SetActive(false);
-                }
-                    
+                }     
             }
         }
     }
@@ -70,7 +69,7 @@ public class MainMenuUIManager : MonoBehaviour
     }
     public void SandBoxButton()
     {
-        //audioSource.PlayOneShot(mainMenuSounds.ButtonSound);
+        ////////////////////////////////////////////////////
     }
     public void LevelSelecterButton()
     {
@@ -123,7 +122,7 @@ public class MainMenuUIManager : MonoBehaviour
         }
     }
 
-    IEnumerator LoadAsync(int sceneIndex)
+    IEnumerator LoadAsync(int sceneIndex) ///////////////////////////////////////
     {
         AsyncOperation aSyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
 
@@ -138,7 +137,7 @@ public class MainMenuUIManager : MonoBehaviour
     }
 }
 [Serializable]
-public struct MainMenuPanels // Baş harfleri büyük küçülcek
+public struct MainMenuPanels
 {
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
