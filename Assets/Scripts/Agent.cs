@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Agent : MonoBehaviour
 {
     private GameManager gameManager;
+    private PlayerController playerController;
     private NavMeshAgent navMeshAgent;
     private Animator agentAnimator;
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        agentAnimator = GetComponent<Animator>();
+        agentAnimator = GetComponent<Animator>(); 
     }
 
     void LateUpdate()
@@ -27,13 +27,12 @@ public class Agent : MonoBehaviour
             navMeshAgent.SetDestination(gameManager.followPoint.transform.position);
             gameManager.transform.rotation = Quaternion.LookRotation(gameManager.followPoint.transform.position);
         }
-
         else
         {
             navMeshAgent.SetDestination(gameManager.fightPoint.transform.position);
         }
 
-        agentAnimator.SetBool("isWin", gameManager.isWin);
+        agentAnimator.SetBool("isWin", gameManager.isWin || playerController.isHold);
     }
     private void OnTriggerEnter(Collider other)
     {

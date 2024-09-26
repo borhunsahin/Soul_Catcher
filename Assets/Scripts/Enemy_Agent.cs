@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,7 +18,7 @@ public class Enemy_Agent : MonoBehaviour
 
     void LateUpdate()
     {
-        if(gameManager.isFight)
+        if(gameManager.isFight && !gameManager.isGameOver)
         {
             navMeshAgent.SetDestination(fightPoint.transform.position);
         }

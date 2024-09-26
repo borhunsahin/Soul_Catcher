@@ -6,13 +6,13 @@ using UnityEngine.UI;
 // Partical Efect seslerinin düzenlenecek
 // Loadasync eklenecek
 
-// Matematiksel İşlemler düzenlenecek
+// Level sahneleri eklenecek
+// Free Agentleri unutma
+
+// Matematiksel İşlemler kontrol edilecek
 // Fight testleri yapılacak
-// Buffların arasına bir Çıta ekle
-// Sahne yükleme için değişkenler oluşturulacak
 // Curved world deneme
 
-// Level sahneleri eklenecek
 // Prefablar Tamamlanacak
 // Snadbox Modu eklenecek
 
@@ -28,6 +28,9 @@ using UnityEngine.UI;
 // Mesafe sliderı tam dolmuyor
 // enemy agentler arasına Boss eklenebilir 1 e 3
 // Ekrana Ajan sayısı yazılacak
+
+// Ajanlar oyunbitsede target point etrafında dönüyor.
+//
 
 public class GameManager : MonoBehaviour
 {
@@ -63,16 +66,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; // Tab to continue butonu ile bir fonksiyon yap
         enemyAgentCount = fightPlatform.enemyAgentCount;
 
-        slider.maxValue = fightPlatform.transform.position.z;
+        slider.maxValue = fightPlatform.transform.position.z - 20;
+
+       
     }
 
     void Update()
-    {       
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            IncreaseAgent();
-        }
-
+    {
         Fight();
 
         slider.value = player.transform.position.z; // Mesafe Slider ı gamemanager den buraya taşı

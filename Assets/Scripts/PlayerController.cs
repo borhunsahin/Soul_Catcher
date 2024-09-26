@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Animator playerAnimator;
 
     [SerializeField] private float playerSpeed;
+    public bool isHold = false;
 
     void Start()
     {
@@ -20,7 +21,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Controller()
     {
-        if (!gameManager.isFight)
+        if(Input.GetKey(KeyCode.Space) && !gameManager.isFight)
+            isHold = true;
+        else
+            isHold = false;
+
+        if (!gameManager.isFight && !isHold)
         {
             transform.Translate(transform.forward * Time.deltaTime * playerSpeed);
             if (Input.GetKey(KeyCode.Mouse0))
@@ -34,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        playerAnimator.SetBool("isFight", gameManager.isFight);
+        playerAnimator.SetBool("isFight", gameManager.isFight || isHold);
     }
     private void OnTriggerEnter(Collider other)
     {
