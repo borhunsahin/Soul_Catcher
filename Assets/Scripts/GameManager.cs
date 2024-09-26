@@ -2,6 +2,33 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+// Partical Efect seslerinin düzenlenecek
+// Loadasync eklenecek
+
+// Matematiksel İşlemler düzenlenecek
+// Fight testleri yapılacak
+// Buffların arasına bir Çıta ekle
+// Sahne yükleme için değişkenler oluşturulacak
+// Curved world deneme
+
+// Level sahneleri eklenecek
+// Prefablar Tamamlanacak
+// Snadbox Modu eklenecek
+
+// Particle Gölgelerini kapa
+// Materyalleri kontrol et
+// Klasör düzenlenmesi ve temizlenmesi
+// Texture ayarları önemli
+// Müzik teliflerini kontrol et
+
+// LightMap Oluştur
+// Hareket etmicek objeleri static yap
+
+// Mesafe sliderı tam dolmuyor
+// enemy agentler arasına Boss eklenebilir 1 e 3
+// Ekrana Ajan sayısı yazılacak
+
 public class GameManager : MonoBehaviour
 {
     GameUIManager gameUIManager;
@@ -22,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public bool isFight = false;
     public bool isGameOver = false;
+    public bool isWin = false;
 
     public int agentCount = 0;
     public int enemyAgentCount = 0;
@@ -164,7 +192,8 @@ public class GameManager : MonoBehaviour
         {
             if (enemyAgentCount == 0)
             {
-                gameUIManager.EndGameProcess(isGameOver);
+                isWin = true;
+                gameUIManager.EndGameProcess(isWin);
 
                 if(SceneManager.GetActiveScene().buildIndex == PlayerDataManager.GetLastLevel())
                     PlayerDataManager.SetLastLevel(PlayerDataManager.GetLastLevel() + 1);

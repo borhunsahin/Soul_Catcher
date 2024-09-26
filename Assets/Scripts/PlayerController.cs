@@ -25,14 +25,15 @@ public class PlayerController : MonoBehaviour
             transform.Translate(transform.forward * Time.deltaTime * playerSpeed);
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                if (Input.GetAxis("Mouse X") < 0)
+                if (Input.GetAxis("Mouse X") < 0 && transform.position.x > -4)
                     transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
 
-                if (Input.GetAxis("Mouse X") > 0)
+                if (Input.GetAxis("Mouse X") > 0 && transform.position.x < 4)
                     transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
             }
         }
-            
+
+
         playerAnimator.SetBool("isFight", gameManager.isFight);
     }
     private void OnTriggerEnter(Collider other)

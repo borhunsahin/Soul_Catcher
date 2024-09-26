@@ -24,6 +24,6 @@ public class Enemy_Agent : MonoBehaviour
         {
             navMeshAgent.SetDestination(fightPoint.transform.position);
         }
-        enemyAnimator.SetBool("isFight", gameManager.isFight);
+        enemyAnimator.SetBool("isFight", gameManager.isFight && !gameManager.isGameOver);
     }
 }

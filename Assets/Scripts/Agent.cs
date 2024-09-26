@@ -7,11 +7,13 @@ public class Agent : MonoBehaviour
 {
     private GameManager gameManager;
     private NavMeshAgent navMeshAgent;
+    private Animator agentAnimator;
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        agentAnimator = GetComponent<Animator>();
     }
 
     void LateUpdate()
@@ -29,8 +31,9 @@ public class Agent : MonoBehaviour
         else
         {
             navMeshAgent.SetDestination(gameManager.fightPoint.transform.position);
-
         }
+
+        agentAnimator.SetBool("isWin", gameManager.isWin);
     }
     private void OnTriggerEnter(Collider other)
     {
