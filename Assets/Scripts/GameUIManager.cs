@@ -11,6 +11,7 @@ public class GameUIManager : MonoBehaviour
 
     AudioSource audioSource;
     public GameSounds gameSounds;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

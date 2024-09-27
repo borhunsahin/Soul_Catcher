@@ -2,36 +2,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-// Partical Efect seslerinin düzenlenecek
-// Loadasync eklenecek
-
-// Level sahneleri eklenecek
-// Free Agentleri unutma
-
-// Matematiksel İşlemler kontrol edilecek
-// Fight testleri yapılacak
-// Curved world deneme
-
-// Prefablar Tamamlanacak
-// Snadbox Modu eklenecek
-
-// Particle Gölgelerini kapa
-// Materyalleri kontrol et
-// Klasör düzenlenmesi ve temizlenmesi
-// Texture ayarları önemli
-// Müzik teliflerini kontrol et
-
-// LightMap Oluştur
-// Hareket etmicek objeleri static yap
-
-// Mesafe sliderı tam dolmuyor
-// enemy agentler arasına Boss eklenebilir 1 e 3
-// Ekrana Ajan sayısı yazılacak
-
-// Ajanlar oyunbitsede target point etrafında dönüyor.
-//
-
 public class GameManager : MonoBehaviour
 {
     GameUIManager gameUIManager;

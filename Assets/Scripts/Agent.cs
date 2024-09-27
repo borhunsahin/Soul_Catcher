@@ -32,7 +32,7 @@ public class Agent : MonoBehaviour
             navMeshAgent.SetDestination(gameManager.fightPoint.transform.position);
         }
 
-        agentAnimator.SetBool("isWin", gameManager.isWin || playerController.isHold);
+        agentAnimator.SetBool("isWin", gameManager.isWin);
     }
     private void OnTriggerEnter(Collider other)
     {

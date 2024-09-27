@@ -21,26 +21,21 @@ public class PlayerController : MonoBehaviour
     }
     private void Controller()
     {
-        if(Input.GetKey(KeyCode.Space) && !gameManager.isFight)
-            isHold = true;
-        else
-            isHold = false;
-
-        if (!gameManager.isFight && !isHold)
+        if (!gameManager.isFight)
         {
             transform.Translate(transform.forward * Time.deltaTime * playerSpeed);
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                if (Input.GetAxis("Mouse X") < 0 && transform.position.x > -4)
+                if (Input.GetAxis("Mouse X") < 0 && transform.position.x > -5.5f)
                     transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
 
-                if (Input.GetAxis("Mouse X") > 0 && transform.position.x < 4)
+                if (Input.GetAxis("Mouse X") > 0 && transform.position.x < 5.5f)
                     transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
             }
         }
 
 
-        playerAnimator.SetBool("isFight", gameManager.isFight || isHold);
+        playerAnimator.SetBool("isFight", gameManager.isFight);
     }
     private void OnTriggerEnter(Collider other)
     {
