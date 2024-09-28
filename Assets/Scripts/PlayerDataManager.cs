@@ -1,4 +1,6 @@
 using UnityEngine;
+using GoogleMobileAds;
+using GoogleMobileAds.Api;
 
 public static class PlayerDataManager
 {
@@ -51,3 +53,8 @@ public static class PlayerDataManager
         return PlayerPrefs.GetInt("MusicToggle", 0) == 0;
     }
 }
+
+//public class AdsManager
+//{
+    
+//}
