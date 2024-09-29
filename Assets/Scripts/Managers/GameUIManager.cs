@@ -81,6 +81,8 @@ public class GameUIManager : MonoBehaviour
     public void RestartButtonwithAds()
     {
         gamePanels.restartButtonwithAds.SetActive(false);
+        gamePanels.restartButtonwithAdsPause.SetActive(false);
+        gamePanels.restartButtonPause.SetActive(true);
         interstitialAdController.ShowAd();
     }
     public void NextLevelButton()
@@ -137,6 +139,9 @@ public struct GamePanels
     public GameObject nextLevelButton;
 
     public GameObject restartButtonwithAds;
+
+    public GameObject restartButtonwithAdsPause;
+    public GameObject restartButtonPause;
 }
     
 [Serializable]

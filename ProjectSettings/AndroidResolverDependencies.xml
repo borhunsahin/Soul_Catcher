@@ -2,7 +2,10 @@
   <packages>
     <package>androidx.constraintlayout:constraintlayout:2.1.4</package>
     <package>com.google.android.gms:play-services-ads:23.2.0</package>
+    <package>com.google.android.gms:play-services-ads-identifier:18.0.1</package>
+    <package>com.google.android.gms:play-services-basement:18.1.0</package>
     <package>com.google.android.ump:user-messaging-platform:2.2.0</package>
+    <package>com.ironsource.sdk:mediationsdk:8.4.0</package>
   </packages>
   <files />
   <settings>
