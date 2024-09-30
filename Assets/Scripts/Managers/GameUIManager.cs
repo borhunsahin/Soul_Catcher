@@ -56,8 +56,8 @@ public class GameUIManager : MonoBehaviour
     }
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(0);
         audioSource.PlayOneShot(gameSounds.buttonSound);
+        StartCoroutine(LoadAsync(0));
     }
     public void ExitButton()
     {
@@ -76,7 +76,7 @@ public class GameUIManager : MonoBehaviour
     }
     public void RestartButton()
     {
-          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadAsync(SceneManager.GetActiveScene().buildIndex));
     }
     public void RestartButtonwithAds()
     {
@@ -87,7 +87,7 @@ public class GameUIManager : MonoBehaviour
     }
     public void NextLevelButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1); // Scene ladı değişkene al
+        StartCoroutine(LoadAsync(SceneManager.GetActiveScene().buildIndex+1));
     }
     public void VolumeSlider()
     {
@@ -122,6 +122,19 @@ public class GameUIManager : MonoBehaviour
             gamePanels.nextLevelButton.SetActive(false);
         }
     }
+    IEnumerator LoadAsync(int sceneIndex)
+    {
+        AsyncOperation aSyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
+
+        gamePanels.loadingPanel.SetActive(true);
+
+        while (!aSyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(aSyncOperation.progress / 0.9f);
+            gamePanels.loadingSlider.value = progress;
+            yield return null;
+        }
+    }
 }
 [Serializable]
 public struct GamePanels
@@ -142,6 +155,9 @@ public struct GamePanels
 
     public GameObject restartButtonwithAdsPause;
     public GameObject restartButtonPause;
+
+    public GameObject loadingPanel;
+    public Slider loadingSlider;
 }
     
 [Serializable]

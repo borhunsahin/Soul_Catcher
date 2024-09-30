@@ -23,10 +23,9 @@
 
 
 /*
- * Loadasync eklenecek
+ * Loadasync eklenecek slider 0 ya da 1 oluyor.
  * Admob reklamlar eklenecek
  * Oyun içi satın alma ve market sahnesi eklenecek
- * Karakter özelleştirme sahnesi eklenecek
  * Sandbox modu eklenecek
  * Curved world denenecek
  * Düşman ajanlar'a boss eklenebilir

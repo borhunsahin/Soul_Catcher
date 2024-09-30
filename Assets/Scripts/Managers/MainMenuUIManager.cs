@@ -62,7 +62,9 @@ public class MainMenuUIManager : MonoBehaviour
     public void ContinueButton()
     {
         audioSource.PlayOneShot(mainMenuSounds.buttonSound);
-        SceneManager.LoadScene(PlayerDataManager.GetLastLevel());
+        //SceneManager.LoadScene(PlayerDataManager.GetLastLevel());
+        StartCoroutine(LoadAsync(PlayerDataManager.GetLastLevel()));
+        
     }
     public void PlayButton()
     {
@@ -123,7 +125,7 @@ public class MainMenuUIManager : MonoBehaviour
         }
     }
 
-    IEnumerator LoadAsync(int sceneIndex) ///////////////////////////////////////
+    IEnumerator LoadAsync(int sceneIndex)
     {
         AsyncOperation aSyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
 
