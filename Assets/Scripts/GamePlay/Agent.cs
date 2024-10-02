@@ -4,14 +4,13 @@ using UnityEngine.AI;
 public class Agent : MonoBehaviour
 {
     private GameManager gameManager;
-    private PlayerController playerController;
     private NavMeshAgent navMeshAgent;
     private Animator agentAnimator;
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        
         navMeshAgent = GetComponent<NavMeshAgent>();
         agentAnimator = GetComponent<Animator>(); 
     }
@@ -27,9 +26,13 @@ public class Agent : MonoBehaviour
             navMeshAgent.SetDestination(gameManager.followPoint.transform.position);
             gameManager.transform.rotation = Quaternion.LookRotation(gameManager.followPoint.transform.position);
         }
-        else
+        else if(gameManager.isFight)
         {
             navMeshAgent.SetDestination(gameManager.fightPoint.transform.position);
+        }
+        else if(gameManager.isWin)
+        {
+            navMeshAgent.speed = 0;
         }
 
         agentAnimator.SetBool("isWin", gameManager.isWin);

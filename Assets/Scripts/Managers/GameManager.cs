@@ -44,7 +44,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Fight();
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            IncreaseAgent();
+        }
+            
 
+        
         slider.value = player.transform.position.z; // Mesafe Slider ı gamemanager den buraya taşı
     }
     public void IncreaseAgent()
