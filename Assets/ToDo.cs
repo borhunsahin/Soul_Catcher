@@ -18,25 +18,21 @@
  * ### Banner Ads ###
  *Andoid ==> ca - app - pub - 3940256099942544 / 6300978111
  * IOS ==> ca - app - pub - 3940256099942544 / 2934735716
+ * 
+ * https://pixabay.com/users/eremit_der_schatten-18198026/
  */
 
 
 
 /*
- * 
- * Müzik teliflerini kontrol et
  * Loadasync eklenecek slider 0 ya da 1 oluyor.
- * Setting ayarlarında togglelar tik yerine çarpı işereti eklenecek
- * Buff aralarına bir kolon
- * Curved world denenecek
+ * Titreşim
+ * 
+ * 
+ * 
+ * 
+ * 
  * Ekrana karakterin sahip olduğu ajan sayısı yazılabilir.
- * titreşim
- * 
- * 
- * 
- * 
- * 
- * 
  * Oyun içi satın alma ve market sahnesi eklenecek
  * Sandbox modu eklenecek.
  * Düşman ajanlar'a boss eklenecek.

@@ -33,12 +33,11 @@ public class GameManager : MonoBehaviour
     {
         gameUIManager = GameObject.Find("UIManager").GetComponent<GameUIManager>();
 
-        Time.timeScale = 1; // Tab to continue butonu ile bir fonksiyon yap
+        Time.timeScale = 1;
+
         enemyAgentCount = fightPlatform.enemyAgentCount;
 
         slider.maxValue = fightPlatform.transform.position.z - 20;
-
-       
     }
 
     void Update()
@@ -49,10 +48,7 @@ public class GameManager : MonoBehaviour
         {
             IncreaseAgent();
         }
-            
-
-        
-        slider.value = player.transform.position.z; // Mesafe Slider ı gamemanager den buraya taşı
+        slider.value = player.transform.position.z;
     }
     public void IncreaseAgent()
     {
