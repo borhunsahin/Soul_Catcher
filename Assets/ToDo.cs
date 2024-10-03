@@ -30,7 +30,7 @@
  * Buff aralarına bir kolon
  * Curved world denenecek
  * Ekrana karakterin sahip olduğu ajan sayısı yazılabilir.
- * 
+ * titreşim
  * 
  * 
  * 
