@@ -33,8 +33,12 @@ public class MainMenuUIManager : MonoBehaviour
         mainMenuSounds.volumeSlider.value = PlayerDataManager.GetVolume();
         mainMenuSounds.soundToggle.isOn = PlayerDataManager.GetSound();
         mainMenuSounds.musicToggle.isOn = PlayerDataManager.GetMusic();
-    }
 
+        if(PlayerPrefs.HasKey("IsFirstGame"))
+        {
+            mainMenuPanels.continueButton.SetActive(true);
+        }
+    }
     private void PanelSelecter(GameObject panelName) 
     {
         
@@ -62,7 +66,6 @@ public class MainMenuUIManager : MonoBehaviour
     public void ContinueButton()
     {
         audioSource.PlayOneShot(mainMenuSounds.buttonSound);
-        //SceneManager.LoadScene(PlayerDataManager.GetLastLevel());
         StartCoroutine(LoadAsync(PlayerDataManager.GetLastLevel()));
         
     }
@@ -72,7 +75,7 @@ public class MainMenuUIManager : MonoBehaviour
     }
     public void SandBoxButton()
     {
-        ////////////////////////////////////////////////////
+
     }
     public void LevelSelecterButton()
     {
@@ -153,6 +156,8 @@ public struct MainMenuPanels
 
     public GameObject loadingPanel;
     public Slider loadingSlider;
+
+    public GameObject continueButton;
 }
 [Serializable]
 public struct MainMenuSounds

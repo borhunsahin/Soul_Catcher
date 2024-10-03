@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     }
     public void GetButtonIndex(int index)
     {
-        //SceneManager.LoadScene(index);
+        PlayerDataManager.SetIsFirstGame(true);
         StartCoroutine(LoadAsync(index));
     }
     IEnumerator LoadAsync(int sceneIndex)

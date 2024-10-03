@@ -1,6 +1,4 @@
 using UnityEngine;
-using GoogleMobileAds;
-using GoogleMobileAds.Api;
 
 public static class PlayerDataManager
 {
@@ -9,10 +7,11 @@ public static class PlayerDataManager
         if(!PlayerPrefs.HasKey("LastLevel"))
         {
             PlayerPrefs.SetInt("LastLevel", 1);
-            PlayerPrefs.SetInt("Point", 0);
             PlayerPrefs.SetFloat("VolumeValue", 1.0f);
             PlayerPrefs.SetInt("SoundToggle", 1);
             PlayerPrefs.SetInt("MusicToggle", 1);
+
+            PlayerPrefs.SetInt("Point", 0);
             PlayerPrefs.Save();
         }
     }
@@ -52,9 +51,9 @@ public static class PlayerDataManager
     {
         return PlayerPrefs.GetInt("MusicToggle", 0) == 0;
     }
+    public static void SetIsFirstGame(bool isFirstGame)
+    {
+        PlayerPrefs.SetInt("IsFirstGame", (isFirstGame ? 0 : 1));
+        PlayerPrefs.Save();
+    }
 }
-
-//public class AdsManager
-//{
-    
-//}

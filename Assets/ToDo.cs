@@ -23,19 +23,23 @@
 
 
 /*
- * Loadasync eklenecek slider 0 ya da 1 oluyor.
- * Admob reklamlar eklenecek
- * Oyun içi satın alma ve market sahnesi eklenecek
- * Sandbox modu eklenecek
- * Curved world denenecek
- * Düşman ajanlar'a boss eklenebilir
- * Ekrana karakterin sahip olduğu ajan sayısı yazılabilir.
- * Setting ayarlarında togglelar tik yerine çarpı işereti eklenecek
- * Ajanlar oyun bitse de target point etrafında dönüyor.
- * Tüm sesler kandığında slider sıfırlacacak sesler açıldığında slider eski haline dönecek
  * 
  * Müzik teliflerini kontrol et
+ * Loadasync eklenecek slider 0 ya da 1 oluyor.
+ * Setting ayarlarında togglelar tik yerine çarpı işereti eklenecek
+ * Buff aralarına bir kolon
+ * Curved world denenecek
+ * Ekrana karakterin sahip olduğu ajan sayısı yazılabilir.
  * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Oyun içi satın alma ve market sahnesi eklenecek
+ * Sandbox modu eklenecek.
+ * Düşman ajanlar'a boss eklenecek.
  */
 
 
